@@ -1,0 +1,315 @@
+Vi anvender $\hat{X}, \hat{Y}, \hat{Z}, \hat{H}$ først på $|0\ra$:
+\[ \hat{x}|0\ra = \begin{pmatrix}
+0 & 1 \\
+1 & 0 
+\end{pmatrix}
+\begin{pmatrix}
+1 \\
+0 
+\end{pmatrix}
+= \begin{pmatrix}
+0 \\
+1 
+\end{pmatrix} \]
+\[ \hat{y}|0\ra = \begin{pmatrix}
+0 & -i \\
+i & 0 
+\end{pmatrix}
+\begin{pmatrix}
+1 \\
+0 
+\end{pmatrix}
+= \begin{pmatrix}
+0 \\
+i 
+\end{pmatrix} \]
+\[ \hat{z}|0\ra = \begin{pmatrix}
+1 & 0 \\
+0 & -1 
+\end{pmatrix}
+\begin{pmatrix}
+1 \\
+0 
+\end{pmatrix}
+= \begin{pmatrix}
+1 \\
+0 
+\end{pmatrix} \]
+\[ \hat{H}|0\ra = \frac{1}{\sqrt{2}}\begin{pmatrix}
+1 & 1 \\
+1 & -1 
+\end{pmatrix}
+\begin{pmatrix}
+1 \\
+0 
+\end{pmatrix}
+= \frac{1}{\sqrt{2}} \begin{pmatrix}
+1 \\
+1 
+\end{pmatrix} \]
+
+\vspace{\baselineskip}
+Og på $|1\ra$:
+\[ \hat{x}|1\ra = \begin{pmatrix}
+0 & 1 \\
+1 & 0 
+\end{pmatrix}
+\begin{pmatrix}
+0 \\
+1 
+\end{pmatrix}
+= \begin{pmatrix}
+1 \\
+0 
+\end{pmatrix} \]
+
+\[ \hat{y}|1\ra = \begin{pmatrix}
+0 & -i \\
+i & 0 
+\end{pmatrix}
+\begin{pmatrix}
+0 \\
+1 
+\end{pmatrix}
+= \begin{pmatrix}
+-i \\
+0 
+\end{pmatrix} \]
+
+\[ \hat{z}|1\ra = \begin{pmatrix}
+1 & 0 \\
+0 & -1 
+\end{pmatrix}
+\begin{pmatrix}
+0 \\
+1 
+\end{pmatrix}
+= \begin{pmatrix}
+0 \\
+-1 
+\end{pmatrix} \]
+
+\[ \hat{H}|1\ra = \frac{1}{\sqrt{2}}\begin{pmatrix}
+1 & 1 \\
+1 & -1 
+\end{pmatrix}
+\begin{pmatrix}
+0 \\
+1 
+\end{pmatrix}
+=\frac{1}{\sqrt{2}} \begin{pmatrix}
+1 \\
+-1 
+\end{pmatrix} \]
+
+\vspace{\baselineskip}
+På en generel bit $\v(\alpha|0\ra + \beta|1\ra\h)$:
+\[ \hat{x}|\psi\ra = \begin{pmatrix}
+0 & 1 \\
+1 & 0 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \begin{pmatrix}
+\beta \\
+\alpha 
+\end{pmatrix} \]
+
+\[ \hat{y}|\psi\ra = \begin{pmatrix}
+0 & -i \\
+i & 0 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \begin{pmatrix}
+-i \beta \\
+i \alpha 
+\end{pmatrix} \]
+
+\[ \hat{z}|\psi\ra = \begin{pmatrix}
+1 & 0 \\
+0& -1 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \begin{pmatrix}
+\alpha \\
+-\beta 
+\end{pmatrix} \]
+
+\[ \hat{H}|\psi\ra =\frac{1}{\sqrt{2}} \begin{pmatrix}
+1 & 1 \\
+1 & -1 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \frac{1}{\sqrt{2}}\begin{pmatrix}
+\alpha+\beta \\
+\alpha-\beta 
+\end{pmatrix} \]
+\vspace{\baselineskip}
+
+CNOT-gate:
+\[ \begin{pmatrix}
+1 & 0&0&0 \\
+0&1&0 & 0 \\
+0&0&0&1 \\
+0&0&1&0 
+\end{pmatrix}
+ \]
+Som har funktionen af skifte et bit men vedholde det andet:
+\[ \text{CNOT} \begin{pmatrix}
+a \\
+b \\
+d \\
+c 
+\end{pmatrix}
+= 
+ \begin{pmatrix}
+1 & 0&0&0 \\
+0&1&0 & 0 \\
+0&0&0&1 \\
+0&0&1&0 
+\end{pmatrix}
+\begin{pmatrix}
+a \\
+b \\
+d \\
+c 
+\end{pmatrix}
+= \begin{pmatrix}
+a \\
+b \\
+c \\
+d 
+\end{pmatrix}
+ \]
+Basen af 2-bit er
+\[ \{|00\ra, |01\ra, |10\ra, |11\ra\} \]
+Hvor
+\[ |01\ra = |0\ra_1 \otimes |1\ra_2 \]
+\vspace{\baselineskip}
+
+Så CNOT har forskellige matrix repræsentationer alt efter hvilke bit skal byttes / fastholdes.\\
+Dette er fordi en q-bit består af en kontrol-bit og en target-bit. I eksemplet ovenfor er $\begin{pmatrix} a \\ b \end{pmatrix}$ delen kontrollen, og $\begin{pmatrix} c \\ d \end{pmatrix}$ target-bitten, da det er denne som ændres. I dirac-notation skrives dette som:
+\[ a|0\ra + b|1\ra \otimes c|0\ra + d|1\ra \]
+
+\textbf{\large{3.1}}\\
+Anvendelsen af $\hat{X}_L$ og $\hat{Z}_L$
+\[ \hat{X}_L |000\ra = \hat{x}|0\ra \otimes \hat{x}|0\ra \otimes \hat{x}|0\ra = |111\ra\]
+\[ \hat{X}_L |111\ra = \hat{x}|1\ra \otimes \hat{x}|1\ra \otimes \hat{x}|1\ra = |000\ra\]
+\[ \hat{Z}_L |000\ra = \hat{z}|0\ra \otimes \hat{z}|0\ra \otimes \hat{z}|0\ra = |000\ra\]
+\[ \hat{Z}_L |111\ra = \hat{z}|1\ra \otimes \hat{z}|1\ra \otimes \hat{z}|1\ra = -|111\ra\]
+\vspace{\baselineskip}
+Anvendelse af cNOT til oprettelse af den logiske Q-bit $(\alpha |000\ra + \beta |111\ra)$
+\[ (\alpha|0\ra + \beta|1\ra) \otimes |0\ra = \alpha|00\ra + \beta|10\ra \; \fbox{\text{cNOT}}\rightarrow \alpha|00\ra + \beta|11\ra \]
+
+
+\vspace{\baselineskip}
+\vspace{\baselineskip}
+For 3-bit har vi de mulige tilstande
+\[ \begin{bmatrix}
+000 \\
+001 \\
+010 \\
+011 \\
+100 \\
+101 \\
+110 \\
+111 \\ 
+\end{bmatrix}
+ \]
+Så hvis vi er i tilstanden $(\alpha|000\ra + \beta|111\ra)$ man vi på matrixform skrive dette som
+\[ \psi_L = \begin{pmatrix}
+\alpha \\
+0 \\ 
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+\beta \\
+\end{pmatrix}
+\]
+Som tidligere beskrevet er $\hat{Z}|0\ra = |0\ra$ og $\hat{Z}|1\ra = -|1\ra$. Så $\hat{Z}_1$ ($\hat{Z}$ anvendt på første bit) bliver
+\[ \hat{Z}_1 = \begin{pmatrix}
+1&0&0&0&0&0&0&0 \\
+0&1&0&0&0&0&0&0 \\
+0&0&1&0&0&0&0&0 \\ 
+0&0&0&1&0&0&0&0 \\
+0&0&0&0&-1&0&0&0 \\
+0&0&0&0&0&-1&0&0 \\
+0&0&0&0&0&0&-1&0 \\
+0&0&0&0&0&0&0&-1 \\
+\end{pmatrix}
+ \]
+Og lign. for $\hat{Z}_2$ og $\hat{Z}_3$. Kombinerer man dem får man
+\[ \hat{Z}_1 \hat{Z}_2 = \begin{pmatrix}
+1&0&0&0&0&0&0&0  \\
+0&1&0&0&0&0&0&0  \\
+0&0&-1&0&0&0&0&0 \\ 
+0&0&0&-1&0&0&0&0 \\
+0&0&0&0&-1&0&0&0 \\
+0&0&0&0&0&-1&0&0 \\
+0&0&0&0&0&0&1&0  \\
+0&0&0&0&0&0&0&1  \\
+\end{pmatrix}, \;\;
+\hat{Z}_2 \hat{Z}_3 = \begin{pmatrix}
+1&0&0&0&0&0&0&0 \\
+0&-1&0&0&0&0&0&0 \\
+0&0&-1&0&0&0&0&0 \\ 
+0&0&0&1&0&0&0&0 \\
+0&0&0&0&1&0&0&0 \\
+0&0&0&0&0&-1&0&0 \\
+0&0&0&0&0&0&-1&0 \\
+0&0&0&0&0&0&0&1 \\
+\end{pmatrix} \]
+Her kan vi se, at anvender vi disse pariteter på $\psi_L$ får vi
+\[ \hat{Z}_1 \hat{Z}_2 \, \psi_L = 1\, \psi_L,\quad \hat{Z}_2 \hat{Z}_3 \psi_L = 1\, \psi_L \]
+Og $\psi_L$ er altså en egentilstand for disse pariteter.\\
+Hvis der så er sket en fejl på en af de 3 bit, vil egenværdien for pariteterne være $-1$, så frem fejlen er sket på en af de to pladser som indgår i pariteten.
+På denne måde kan man også finde frem til hvor fejlen er begået. Hvis man får egenværdierne $-1(\hat{Z}_1\hat{Z}_2)$ og $-1(\hat{Z}_2\hat{Z}_3)$ må fejlen være på andet bit.\\
+
+\vspace{\baselineskip}
+\vspace{\baselineskip}
+For basen
+\[ \begin{bmatrix}
++++ \\
+++- \\
++-+ \\
++-- \\
+-++ \\
+-+- \\
+--+ \\
+--- \\ 
+\end{bmatrix}\]
+kan vi gøre med $\hat{X}$ pariteterne præcis som vi før gjorde med $\hat{Z}$ pariteterne:
+\[ \hat{X}_1 \hat{X}_2 = \begin{pmatrix}
+1&0&0&0&0&0&0&0  \\
+0&1&0&0&0&0&0&0  \\
+0&0&-1&0&0&0&0&0 \\ 
+0&0&0&-1&0&0&0&0 \\
+0&0&0&0&-1&0&0&0 \\
+0&0&0&0&0&-1&0&0 \\
+0&0&0&0&0&0&1&0  \\
+0&0&0&0&0&0&0&1  \\
+\end{pmatrix}, \;\;
+\hat{X}_2 \hat{X}_3 = \begin{pmatrix}
+1&0&0&0&0&0&0&0 \\
+0&-1&0&0&0&0&0&0 \\
+0&0&-1&0&0&0&0&0 \\ 
+0&0&0&1&0&0&0&0 \\
+0&0&0&0&1&0&0&0 \\
+0&0&0&0&0&-1&0&0 \\
+0&0&0&0&0&0&-1&0 \\
+0&0&0&0&0&0&0&1 \\
+\end{pmatrix} \]
+Som er identisk med $\hat{Z}$ for $\{|0\ra, |1\ra\}$ basen. Så dette baseskift bytter operationerne $\hat{X}$ og $\hat{Z}$.

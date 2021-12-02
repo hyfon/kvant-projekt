@@ -17,6 +17,10 @@
 \renewcommand{\thesection}{\alph{section})} 
 % her erstattes alph med f.eks. Alph, arabic, roman eller Roman og ) kan fjernes eller erstattes
 
+\usepackage{soul} % Dette er til forsiden
+\sodef\an{}{0.2em}{.9em plus.6em}{1em plus.1em minus.1em}
+\newcommand\stext[1]{\an{\scshape#1}}
+
 \newcommand{\ds}{\displaystyle}
 
 \newcommand{\la}{\langle} 
@@ -24,3 +28,45 @@
 
 \renewcommand{\v}{\left} 
 \newcommand{\h}{\right} 
+
+
+\begin{document}
+%Her laver vi en forside...
+\begin{titlingpage}
+\thispagestyle{empty}
+\centering
+{ \setlength{\baselineskip}{24pt}
+{\Huge \stext{Kvantemekanikprojekt  E2021}} \par\vspace*{2\onelineskip}
+
+\large\stext{Projekt nr: X} \par %<--- Indsæt projektnummer
+\large\stext{Titel: ZXY GHF GT} %<--- Indsæt titel her.
+
+\par\vspace
+*
+{8\onelineskip} %Her skrives dit navn og dit årskortnummer
+\large\stext{Navn: XX YY} \par
+\large\stext{Studienummer:  123456789}\par\vspace*{2\onelineskip}
+%% Skal flere gruppemedlemmer tilføjes, så kopier ovennstående to linjer.
+
+
+\par\vspace*{2\onelineskip}
+\large\stext{Afleveret: dato (Senest fredag d. 10/12 kl.~12.00 til
+  Ann-Berit Porse St\ae rk\ae r, 1522-314)
+}\par\vspace*{2\onelineskip} }
+
+\vfill
+\vspace
+*
+{2\onelineskip}
+%%%% HER SKAL I SKRIVE VEJLEDEREN PÅ PROJEKT OG JERES TØ-INSTRUKTOR %%%%
+%%%% HVIS I HAR FORSKELLIGE INSTRUKTORER TIL TØ, SÅ SKRIV DEM ALLE %%%%%%%
+\stext{Projektvejleder: XXX YYY}\par\vspace*{2\onelineskip}
+\stext{Instruktor: XXA YYA}\par\vspace
+*
+{2\onelineskip}
+\enlargethispage{2\onelineskip}
+\end{titlingpage}
+
+
+
+\end{document}

@@ -14,7 +14,7 @@
 
 \usepackage{geometry}
 \geometry{margin=1.2in}
-\renewcommand{\thesection}{\alph{section})} 
+\renewcommand{\thesection}{Del \arabic{section}:}  
 % her erstattes alph med f.eks. Alph, arabic, roman eller Roman og ) kan fjernes eller erstattes
 
 \usepackage{soul} % Dette er til forsiden

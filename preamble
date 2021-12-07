@@ -1,4 +1,4 @@
-\documentclass{article} 
+\documentclass[danish,a4paper,oneside,onecolumn,article,11pt]{memoir}
 
 \usepackage[utf8]{inputenc}  % Korrekt håndtering af æ, ø og å 
 \usepackage[T1]{fontenc}  % Korrekt håndtering af æ, ø og å 
@@ -13,7 +13,7 @@
 \usepackage{dsfont} 
 
 \usepackage{geometry}
-\geometry{margin=1.2in}
+\geometry{margin=2cm}
 \renewcommand{\thesection}{Del \arabic{section}:}  
 % her erstattes alph med f.eks. Alph, arabic, roman eller Roman og ) kan fjernes eller erstattes
 

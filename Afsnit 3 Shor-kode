@@ -1,0 +1,90 @@
+\section{Shor-koden}
+Shor-koden er indkodning, der kombinerer både bit-flip og fase-flip koden ved brug af ni fysiske qubits. Bit-flip koden anvendes på tre af de fysiske qubits. De tre outputs herfra anvendes hver især sammen med to andre fysiske qubits som inputs til hver sin fase-flip indkodning. Vi har altså en sekventiel indkodning, der består af først en bit-flip kode og dernæst tre parrallele fase-flip koder.\\
+
+Som tidligere giver bit-flip koden os tilstandene $|000>$ og $|111>$. Hademar gaten transformerer tilstandene om til $\sqrt{\frac{1}{2}} (|000> + |111>)$ og $\sqrt{\frac{1}{2}} (|000> - |111>)$. Da vi laver denne indkodning parrallelt tre gange får vi vores logiske bits beskrevet som:
+
+\begin{align}
+    |0>_L = (|000> + |111>)^{\otimes 3}\\
+    |1>_L = (|000> - |111>)^{\otimes 3}
+\end{align}
+
+\section{Lidt notation}
+Da vi nu bruger ni fysiske qubits til at lave et logisk qubit vil det begynde at kræve store matricer og vektorer til at beskrive dette, så derfor anvender vi her en tensorproduktnotation til at simplificere opskrivningen. Her er I en 2x2 identitetsmatrice, $\hat{X}$ og $\hat{Z}$ er de tidligere nævnte 2x2 bit-flip og fase-flip operatorer. Oprindeligt vil vores operatorer for de logiske bit beskrives med $(9 \cdot 2)x(9 \cdot 2)$ matrice, som igen kan beskrives som 9x9 tensorer hvor indgangene er 2x2 matricer. I disse 9x9 tensorer er det kun diagonalen, der er interessandt, da resten bare indeholder 0. Et eksempel på denne notation kunne være:
+
+\begin{equation}
+    \hat{X}_L = \hat{Z} \otimes I \otimes I \otimes \hat{Z} \otimes I \otimes I \otimes \hat{Z} \otimes I \otimes I
+\end{equation}
+
+For at simplificere notationen yderligere kan et logisk qubit beskrives som et produkt af tre tripletter hver bestående af tre fysiske qubits. En operator på et logisk qubit kan dermed beskrives ved at dele den op i tre dele (en for hver triplet) og derefter tage produktet af dem. Det næste eksempel viser et faseskifte på et fysisk qubit i hver af de tre tripletter, som samlet giver bit-flip operatoren for Shor-koden:
+
+\begin{align*}
+    \hat{Z}_2 &= I \otimes \hat{Z} \otimes I\\
+    \hat{Z}_4 &= \hat{Z} \otimes I \otimes I\\
+    \hat{Z}_9 &= \otimes I \otimes I \otimes \hat{Z}\\
+    \hat{X}_L &= \hat{Z}_2 \otimes \hat{Z}_4 \otimes \hat{Z}_9
+\end{align*}
+
+\section{Shor-kodens X- og Z-operatorer}
+Shor-kodens bit-flip operator $\hat{X}_L$ transformerer $|0>_L$ til $|0>_L$ og vice versa. Eksemplerne ovenfor viser eksempler denne operator. Den er ikke unik, hvilket vil sige at der findes flere versioner af operatoren, som giver den samme effekt. Vigtigt er det at der skal ske et fase-flip i en eller alle tre triplets (hvilket har samme effekt). Nedenfor ses hvad der sker, hvis der er fase-flip i alle tre triplets ($Z_i$ betyder her blot et fase-flip på et vilkårligt bit i tripletten):
+
+\begin{align*}
+    \hat{X}_L|0>_L &= (\hat{Z}_i|000> + \hat{Z}_i|111>)^{\otimes 3} = (|000> - |111>)^{\otimes 3} = |1>_L\\
+    \hat{X}_L|1>_L &= (\hat{Z}_i|000> - \hat{Z}_i|111>)^{\otimes 3} = (|000> + |111>)^{\otimes 3} = |0>_L
+\end{align*}
+
+Shor-kodens fase-flip operator $\hat{Z}_L$ transformerer $|0>_L$ om til sig selv og $|1>_L$ om til $-|1>_L$. Dette gøres ved at bytte om på tilstanden af en af triplettet (det vil sige flippe alle de fysiske qubits i en triplet) eller af alle tripletterne. Dette kan gøres ved at bruge bit-flip operatoren på alle tre qubits i en triplet. Der findes dermed fire fase-flip operatorer for det logiske qubit, som har den samme effekt. Et eksempel på dette ses nedenfor:
+
+\begin{equation}
+    \hat{Z}_L = \hat{X}_1 \hat{X}_2  \hat{X}_3 \otimes I \otimes I \otimes I \otimes I \otimes I \otimes I
+\end{equation}
+
+Anvendes fase-flip operatoren på $|0>_L$ og $|1>_L$ (i dette eksempel ændres tilstanden kun på en enkelt triplet) fås:
+
+\begin{align*}
+    \hat{Z}_L|0>_L &= (\hat{X}_1\hat{X}_2\hat{X}_3|000> + \hat{X}_1\hat{X}_2\hat{X}_3|111>)(|000> + |111>)^{\otimes 2} \\&= (|111> + |000>)(|000> + |111>)^{\otimes 2} = (|000> + |111>)^{\otimes 3} \\&= |0>_L\\
+    \hat{Z}_L|1>_L &= (\hat{X}_1\hat{X}_2\hat{X}_3|000> - \hat{X}_1\hat{X}_2\hat{X}_3|111>)(|000> - |111>)^{\otimes 2} \\&= (|111> - |000>)(|000> + |111>)^{\otimes 2} = (-|000> + |111>)(|000> + |111>)^{\otimes 2} \\&= -(|000> - |111>)^{\otimes 3} \\&= -|1>_L
+\end{align*}
+
+Kort groft fortalt er bit-flip operatoren $\hat{X}_L$ på et logisk qubit bygget op af fase-flip operatorer $\hat{Z}_i$ på de fysiske qubits, som opbygger det logiske qubit, og ligeså er fase-flip operatoren $\hat{Z}_L$ på et logisk qubit opbygget af bit-flip operatorer $\hat{X}_i$ på de fysiske qubits, som det logiske qubit er bygget op af.
+
+\section {Syndrommålinger}
+I det kvantemekaniske tilfælde sker der, præcis som i det klassiske tilfælde, bit-flipfejl (uddybet i tidligere afsnit) som vi gerne vil undgå har betydning for den videre proces, hvad end denne måtte være. Dette gøres effektivt ved at lokalisere disse fejl og rette dem, hvilket kan lyde simpelt, men modsat muligheden for at måle en sådan fejl når man har med klassiske bits at gøre, vil en måling i det kvantemekaniske tilfælde forårsage et kollaps af den omhandlende bits bølgefunktion og derfor en potentielt ødelagt superpositionstilstand. Det betyder altså at, fortages en direkte måling af en bit på en kvantecomputer, så mistes information omkring den bit, modstridende samme handlings resultat i det klassiske tilfælde. \\
+
+Måden hvorpå vi kan undgå dette problem og stadig fremskaffe den information omkring en mulig bit-flipfejl, som er nødvendig for at effektivisere brugen af en kvantecomputer i dette isolerede tilfælde, er at vi kan måle på qubits i såkaldte pariteter. Hvilket betyder at vi i par af to kan måle tilstandene af de relevante qubits, uden at kollapse deres bølgefunktioner og ud fra disse målinger deducere hvor der er opstået en bit-flipfejl. Notationen af de operatorer, som benyttes til at måle disse pariteter til detektion af bit-flipfejl er: 
+
+\begin{align*}
+    \hat{Z_1} \hat{Z_2} \textrm{ og } \hat{Z_2} \hat{Z_3}
+\end{align*}
+
+Måles disse to superpositioners tilstande og der er sket et fortegnsskifte ved vi derved, om der er sket en bit-flipfejl. Et kort eksempel kan være, at hvis begge tilstande måles og kun den første har et fortegnsskifte, så ved vi at der må være sket en bit-flipfejl i den fysiske qubit tilhørende operatoren $\hat{Z_1}$ da denne er specifik for denne superposition. \\
+
+Resultatet af en sådan måling kalder vi for syndromer og målingen selv er altså den vi refererer til som en såkaldt syndrommåling. Grunden hertil, naturligvis værende at vi jo ikke på noget tidspunkt faktisk observerer en fejl i de fysiske qubits, da dette ville modstride den kvantemekaniske natur af systemet ved at kollapse den dertilhørende bølgefunktion, og derfor i stedet deducerer hvor der må være en fejl. Den benyttede notation for disse syndrommålinger, som er en direkte forlængelse af den tidligere notation for de benyttede operatorer  $\hat{Z_1} \hat{Z_2} \textrm{ og } \hat{Z_2} \hat{Z_3}$, er således (±1,±1) hvor hver indgang her refererer til et resultat af en paritet. Derved kan refereres til tidligere benævnelse af det fortegnsskifte, som benyttes til at bestemme om en bit-flipfejl er til stede i en givet paritet (og dermed fysisk qubit) eller ej. \\
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    $\hat{Z_1} \hat{Z_2}$ & $\hat{Z_2} \hat{Z_3}$ & Error & Correction \\
+    \hline
+    +1 & +1 & no error & no correction \\
+    \hline
+    +1 & -1 & bit 3 flipped & flip bit 3 \\
+    \hline
+    -1 & +1 & bit 1 flipped & flip bit 1 \\
+    \hline
+    -1 & -1 & bit 2 flipped & flip bit 2 \\
+    \hline
+    \end{tabular}
+\end{table}
+
+TABLE I: Tabel over de mulige bit-flipfejl samt deres korrektioner.
+
+Fuldstændig tilsvarende metoden til at finde en mulig bit-flipfejl i en fysisk qubit, findes der et sæt af operatorer, som benyttes til at detektere fasefejl. Notationen for disse er således:
+
+\begin{align*}
+    \hat{X_1} \hat{X_2} \textrm{ og } \hat{X_2} \hat{X_3}
+\end{align*}
+
+Den eneste forskel er altså at vi her benytter os af $\hat{X}$-operatoren istedet for $\hat{Z}$-operatoeren, derudover er den overordnede fremgangsmetode fuldstændig den samme som i tidligere korte eksempel beskrevet ovenfor. \\
+
+For at kunne fejlfinde og korrigere effektivt benyttes en metode hvor begge disse kombineres, så man ikke er nødsaget til at enten forsøge at rette bit-flipfejl eller fasefejl. Denne metode kaldes for Shor-koden og er beskrevet i højere detalje i afsnittet med samme navn.

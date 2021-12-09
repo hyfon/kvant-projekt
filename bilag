@@ -157,10 +157,28 @@ Kombinerer man disse, kan vi indkode 9 fysiske bits i Shor-koden:
     \caption{Indkodning af et logisk qbit bestående af 9 fysiske. Dette er Shor koden.}
     \label{fig:bitindkodning2}
 \end{figure}
+\\
 
+Bilag 6\\
+Ved at anvende $\hat{Z}_1\hat{Z_2}$ på tilstanden $\psi_L = \alpha|000\ra + \beta|111\ra$ får vi:
+\[ \hat{Z}_1 \hat{Z}_2 \; \psi_L =\alpha (\hat{Z}|0\ra \otimes \hat{Z}|0\ra \otimes |0\ra) + \beta (\hat{Z}|1\ra \otimes \hat{Z}|1\ra \otimes |1\ra) = 
+	\alpha (|0\ra\otimes|0\ra\otimes|0\ra) + (-\,-) \beta (|1\ra\otimes|1\ra\otimes|1\ra) = 1\; \psi_L\]
+Dette er altså en egentilstand for $\psi_L$. Ligeledes gælder dette for $\hat{Z}_2\hat{Z}_3$.\\
+Dette gælder også for $\hat{X}_i, \; i = 1,2,3$. F.eks. $\hat{X}_1$:
+\[ \hat{Z}_1 \hat{Z}_2 \;\; \hat{X}_1 \, \psi_L =\alpha (\hat{Z}|1\ra \otimes \hat{Z}|0\ra \otimes |0\ra) + 
+\beta (\hat{Z}|0\ra \otimes \hat{Z}|1\ra \otimes |1\ra)
+ = (-) \alpha (|1\ra\otimes|0\ra\otimes|0\ra) + (-) \beta (|0\ra\otimes|1\ra\otimes|1\ra) = -1\; \hat{X}_1\, \psi_L\]
 
+\vspace{\baselineskip}
 
-
+Ved at anvende $\hat{Z}_1\hat{Z_2}$ på tilstanden $\psi_L = \alpha|+++\ra + \beta|---\ra$ får vi:
+\[ \hat{X}_1 \hat{X}_2 \; \psi_L =\alpha (\hat{X}|+\ra \otimes \hat{X}|+\ra \otimes |+\ra) + \beta (\hat{X}|-\ra \otimes \hat{X}|-\ra \otimes |-\ra) = 
+	\alpha (|+\ra\otimes|+\ra\otimes|+\ra) + (-\,-) \beta (|-\ra\otimes|-\ra\otimes|-\ra) = 1\; \psi_L\]
+Dette er altså en egentilstand for $\psi_L$. Ligeledes gælder dette for $\hat{X}_2\hat{X}_3$.\\
+Dette gælder også for $\hat{Z}_i, \; i = 1,2,3$. F.eks. $\hat{Z}_1$:
+\[ \hat{X}_1 \hat{X}_2 \;\; \hat{Z}_1 \, \psi_L =\alpha (\hat{X}|-\ra \otimes \hat{X}|+\ra \otimes |+\ra) + 
+\beta (\hat{X}|+\ra \otimes \hat{X}|-\ra \otimes |-\ra)
+ = (-) \alpha (|-\ra\otimes|+\ra\otimes|+\ra) + (-) \beta (|+\ra\otimes|-\ra\otimes|-\ra) = -1\; \hat{Z}_1\, \psi_L\]
 
 
 

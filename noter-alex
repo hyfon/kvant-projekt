@@ -313,3 +313,6 @@ kan vi gøre med $\hat{X}$ pariteterne præcis som vi før gjorde med $\hat{Z}$ 
 0&0&0&0&0&0&0&1 \\
 \end{pmatrix} \]
 Som er identisk med $\hat{Z}$ for $\{|0\ra, |1\ra\}$ basen. Så dette baseskift bytter operationerne $\hat{X}$ og $\hat{Z}$.
+
+
+Hej hej

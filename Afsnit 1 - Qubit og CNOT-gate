@@ -1,0 +1,256 @@
+\documentclass[danish,a4paper,oneside,onecolumn,article,11pt]{memoir}
+
+\usepackage[utf8]{inputenc}  % Korrekt håndtering af æ, ø og å 
+\usepackage[T1]{fontenc}  % Korrekt håndtering af æ, ø og å 
+\usepackage{microtype}  % Typografisk magi! Giver bl.a. pænere orddeling 
+\usepackage{graphicx} % Gør det muligt at indsætte billeder  
+\usepackage{amsmath}  % Giver adgang til uundværlige matematikting  
+\usepackage[danish]{babel}  % Danske betegnelser og orddeling  
+\usepackage{helvet}
+\renewcommand{\danishhyphenmins}{22}  % Bedre dansk orddeling  
+
+\setlength\parindent{0pt} %stopper indentering ved nyt paragraf 
+\usepackage{dsfont} 
+
+\usepackage{geometry}
+\geometry{margin=2cm}
+\renewcommand{\thesection}{Del \arabic{section}:}  
+% her erstattes alph med f.eks. Alph, arabic, roman eller Roman og ) kan fjernes eller erstattes
+
+\usepackage{soul} % Dette er til forsiden
+\sodef\an{}{0.2em}{.9em plus.6em}{1em plus.1em minus.1em}
+\newcommand\stext[1]{\an{\scshape#1}}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\la}{\langle} 
+\newcommand{\ra}{\rangle} 
+
+\renewcommand{\v}{\left} 
+\newcommand{\h}{\right} 
+
+% Indholdet i dit dokument starter her!
+\begin{document}
+
+\section*{Qubit}
+
+I en klassisk computer opererer man med bits som den mindste enhed af data. En bit har én binær værdi, enten 0 eller 1. Tilsvarede opererer kvantecomputere med den såkaldte qubit, et kvantemekanisk system bestående af tilstandene $|0 \rangle$ og $|1\rangle$. Generelt er qubits foton- eller elektronpartikler, hvorom man udnytter elektronens spin eller fotonens polarisering, til at bestemme hvilken tilstand vores qubit befinder sig i. Til forskel for vores klassiske computer, benyttes det kvantemekaniske fænomen superposition til at skabe en linearkombination af de to tilstande. Generelt kan vi skrive tilstanden for en qubit som $|\psi \rangle =\alpha |0 \rangle + \beta |1\rangle$ som følger $|\alpha|^2+|\beta|^2=1$. Vi befinder os således i et to-dimentionelt Hilbertum, som gør det ideelt at benytte Pauli-matricer \footnote{Pauli-matricer - bilag 1} til qubit-operationer. Generelt kaldes operationer som benyttes på en tilstand for en gate. Ved at benytte Pauli-matricerne på tilstandene $|0\rangle$ og $|1\rangle$\footnote{Udregning for Pauli-matricerne på $|0\rangle$ og $|1\rangle$ - bilag 2.} fås en række operationer. Ved at benytte $\hat{X}$ på en qubit fås: 
+ \[ \hat{X}|\psi\rangle = \begin{pmatrix}
+0 & 1 \\
+1 & 0 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \begin{pmatrix}
+\beta \\
+\alpha 
+\end{pmatrix} \]
+
+Ved at benytte $\hat{X}$ på én qubit får vi en ombytning af vores $\alpha$ og $\beta$ - altså ændre vi tilstanden fra $|0\rangle$ til $|1\rangle$ og vice versa. Denne gate er således ækvivalent til en klassisk NOT-gate. For $\hat{Y}$ og $\hat{Z}$ gælder der:
+
+\[ \hat{Y}|\psi\ra = \begin{pmatrix}
+0 & -i \\
+i & 0 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \begin{pmatrix}
+-i \beta \\
+i \alpha 
+\end{pmatrix}, \quad
+ \hat{Z}|\psi\rangle = \begin{pmatrix}
+1 & 0 \\
+0& -1 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \begin{pmatrix}
+\alpha \\
+-\beta 
+\end{pmatrix} \]
+
+
+
+Ved at benytte $\hat{Y}$ og $\hat{Z}$ på vores qubit, udføres der en $\pi$-rotation omkring Bolch-sfærens\footnote{https://en.wikipedia.org/wiki/Bloch_sphere} y- og z-akse. Disse gates bruges blandt andet ved fase-flip fejl som vi vil komme ind på senere. \newline
+En anden vigtig gate i kvantecomputing er den såkaldte Hadamard-gate:
+
+\[ \hat{H}|\psi\ra =\frac{1}{\sqrt{2}} \begin{pmatrix}
+1 & 1 \\
+1 & -1 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \frac{1}{\sqrt{2}}\begin{pmatrix}
+\alpha+\beta \\
+\alpha-\beta 
+\end{pmatrix} \]
+\vspace{\baselineskip}
+
+Ved at benytte Hadamard-gaten på vores qubit, uagtet om den er $|0\ra$ eller $|1\ra$, vil den bringe vores qubit i en superposition, hvor sandsynligheden for at måle 0 er lig sandsynligheden for at måle 1. Befinder vores qubit sig allerede i en superposition, vil gaten ændre vores base fra $\alpha|0\ra+\beta|1\ra$ hvor vi måler bitværdien, til $\alpha|+\ra+\beta|-\ra$ hvor vi måler på fasen. \\ \\ 
+
+\textbf{CNOT-gaten} \\
+
+En anden vigitg gate er controlled-not gaten, også kaldes CNOT-gaten\footnote{CNOT-gaten på matrix form - bilag 3}. Denne gate er en to-qubit-gate og er den mest anvendte af slagsen. Den første qubit kaldes control-qubit mens den anden qubit kaldes target-qubit. Det er her vigtigt, at basen er ordnet som følgende: $|00\rangle, |01\rangle, |10\rangle, |11\rangle$ - formelt burde man her benytte tensorprodukt-notation fx. $|10\rangle = |1\rangle_1 \otimes |0\rangle_2$, hvor subscribtet referere til qubit 1 eller 2, dette er oftes underforstået, og derfor undlades det. CNOT-gaten har til formål at bytte om på target-qubit\footnote{Udregning af CNOT-gaten på to tilfældige qubits - bilag 4} hvis og kun hvis, at control-qubit er 1.
+
+
+\newpage
+\section*{bilag}
+
+Pauli-matricer - bilag 1
+
+\begin{equation*}
+    \sigma_x=\hat{X}= \begin{pmatrix}
+    0 & 1 \\
+    1 & 0 \\
+    \end{pmatrix},\quad
+    \sigma_y=\hat{Y}= \begin{pmatrix}
+    0 & -i \\
+    i & 0 \\
+    \end{pmatrix},\quad
+        \sigma_z=\hat{Z}= \begin{pmatrix}
+    1 & 0 \\
+    0 & -1 \\
+    \end{pmatrix}
+\end{equation*}
+
+Anvendelse af $\hat{X}, \hat{Y}, \hat{Z}, \hat{H}$ på én bit - bilag 2.
+
+    \[ \hat{X}|\psi\ra = \begin{pmatrix}
+0 & 1 \\
+1 & 0 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \begin{pmatrix}
+\beta \\
+\alpha 
+\end{pmatrix} \]
+
+\[ \hat{Y}|\psi\ra = \begin{pmatrix}
+0 & -i \\
+i & 0 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \begin{pmatrix}
+-i \beta \\
+i \alpha 
+\end{pmatrix} \]
+
+\[ \hat{Z}|\psi\ra = \begin{pmatrix}
+1 & 0 \\
+0& -1 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \begin{pmatrix}
+\alpha \\
+-\beta 
+\end{pmatrix} \]
+
+\[ \hat{H}|\psi\ra =\frac{1}{\sqrt{2}} \begin{pmatrix}
+1 & 1 \\
+1 & -1 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \frac{1}{\sqrt{2}}\begin{pmatrix}
+\alpha+\beta \\
+\alpha-\beta 
+\end{pmatrix} \] \newline 
+
+CNOT-gaten - bilag 3
+
+\[ CNOT = \begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 \\
+\end{pmatrix} \] \newline 
+
+Udregning af CNOT-gaten på to tilfældige qubits - bilag 4
+
+\[CNOT\cdot |\psi \rangle \otimes |\phi\rangle = \begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 \\
+\end{pmatrix} \begin{pmatrix}
+\alpha & \gamma \\
+\alpha & \delta \\
+\beta & \gamma \\
+\beta & \delta \\
+\end{pmatrix} = \begin{pmatrix}
+\alpha & \gamma \\
+\alpha & \delta \\
+\beta & \delta \\
+\beta & \gamma \\
+\end{pmatrix}\] \newline
+
+
+
+
+
+
+\begin{equation*}
+    |00\rangle = \begin{pmatrix}
+    1 \\
+    0 \\
+    0 \\
+    0 \\
+    \end{pmatrix},
+     |01\rangle = \begin{pmatrix}
+    0 \\
+    1 \\
+    0 \\
+    0 \\
+    \end{pmatrix},
+    |10\rangle = \begin{pmatrix}
+    0 \\
+    0 \\
+    1 \\
+    0 \\
+    \end{pmatrix},
+      |11\rangle = \begin{pmatrix}
+    0 \\
+    0 \\
+    0 \\
+    1 \\
+    \end{pmatrix}
+\end{equation*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+% Dokumentet er nu slut! Skriv ikke noget herunder.

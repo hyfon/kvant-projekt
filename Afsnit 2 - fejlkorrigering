@@ -1,0 +1,18 @@
+\section{Fejlkorrektion}
+I en klassisk computer kan der ske fundamentale fejl kaldet bit-flip fejl. Dette sker når et enkenlt bit/en enkelt transistor flippes $(0\leftrightarrow1)$. Hvis det forkerte bit flippes kan dette have store konsekvenser for hele programmet. Derfor indfører man \emph{logiske bits}, som nu bruges som de fundamentale byggeklodser for programmet. En logisk bit består af flere, f.eks. 3, fysiske bits / transistorer. Dette skriver man som:
+\[ 0_L = 000, \quad 1_L = 111 \]
+Nu måles den logiske bit værdi ud fra hvilken værdi flertallet af de fysiske bits har. På denne måde kan enkelte bit-flip fejl ikke ændre værdien af et bit, og dermed ikke forårsage skade. I dette tilfælde skal der altså 2 bit-flip fejl til at ændre værdien af det logiske bit.\\
+
+For at undersøge sandsynlighederne for fejl af logiske bits, definerer man kodeafstanden $d$ som antallet af operationer der skal til for, at ændre bit-værdien ($0_L \leftrightarrow 1_L$). I tilfældet med 3 fysiske bits er $d=3$, da 3 bits skal flippes for at opnå $000 \leftrightarrow 111$. Hvis man skal udredde disse fejl, ser man på hvad flertallet viser, og ændrer resten så de passer (f.eks. $010 \rightarrow 000$). Dette vil sige, at man generelt kan løse $(d-1)/2$ fejl, uden at den logiske bit-værdi ændres. \\
+Fejl kan fikses ved at anvende NOT-gates. Disse tager et bit som input og flipper det. På denne måde kan vi korrigere fejl før de hober op. Selvfølgelig skal vi sørge for at fejlkorrigere hurtigts muligt, da 2 fejl ud af 3 vil resultere i, at vi korrigerer den forkerte vej
+ (f.eks. $000\xrightarrow{\text{2 fejl}} 110 \xrightarrow{\text{fix}}111$).\\
+
+Vi antager, at sandsynligheden for en enkelt bit-flip fejl er $p < 0.5$. Da vil sandsynligheden for $n$-fejl være $p_n < 0.5^n$. Eftersom vi kan håndtere maks. $(d-1)/2$ fejl, vil sandsynligheden for en bitflip fejl med kodeafstanden $d$ være sandsynligheden for at der sker $(d-1)/2 \; +1 = (d+1)/2$ fejl:
+\[ p_d < 0.5^{(d+1)/2} \]
+Plottes dette kan vi tydeligt se, at sandsynligheden for logiske bit-flip fejl falder med øget antal fysiske bit pr. logisk. Beskyttelsen mod bit-flip fejl øges altså med ``størrelsen'' af de logiske bits. 
+ \begin{figure}[h!]
+    \centering
+    \includegraphics[scale=.8]{bit-flip-sandsynlighedsplot.PNG}
+    \caption{Sandsynlighed for logisk fejl ved bit-flip fejl}
+    \label{fig:bit-flip-plot}
+\end{figure}

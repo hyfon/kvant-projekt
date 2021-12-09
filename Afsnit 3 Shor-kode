@@ -96,4 +96,11 @@ Shor-koden er som tidligere nævnt altså måden hvorpå man kan korrigere for b
     +\frac{\beta}{2\sqrt{2}}(|000\ra-|111\ra)(|100\ra+|011\ra)(|000\ra-|111\ra)
 \end{align}
 
-Bit-flip operatoren $\hat{X}$ benyttes på de tre blokke af 3 fysiske qubits og grundet den allerede kendte bit-flipfejl vil alle returnere +1, på nær den paritet indeholdende fejlen, denne vil naturligvis returnere værdien -1. Derved kan vi benytte den korrigerene gate til netop denne rettelse (denne er beskrevet i afsnittet om $\hat{X}$-gaten.
+Bit-flip operatoren $\hat{X}$ benyttes på de tre blokke af 3 fysiske qubits og grundet den allerede kendte bit-flipfejl vil alle returnere +1, på nær den paritet indeholdende fejlen, denne vil naturligvis returnere værdien -1. Derved kan vi benytte den korrigerene gate til netop denne rettelse (denne er beskrevet i afsnittet om $\hat{X}$-gaten. Efter bit-flipfejlen er korrigeren for kan det rettede state beskrives som følgende: 
+
+\begin{align}
+    |\psi\ra = \frac{\alpha}{2\sqrt{2}} (|000\ra+|111\ra)(|000\ra-|111\ra)(|000\ra+|111\ra) \\ 
+    +\frac{\beta}{2\sqrt{2}}(|000\ra-|111\ra)(|000\ra+|111\ra)(|000\ra-|111\ra)
+\end{align}
+
+Fase-flip operatoren $\hat{Z}$ benyttes nu på hver blok bestående af 3 fysiske qubits. Dette vil resultere i at både bit-flip- og fasefejlen nu er rettet og anvendelsen af Shor-koden er dermed komplet.

@@ -1,11 +1,11 @@
 \section{Shor-koden}
 Shor-koden er indkodning, der kombinerer både bit-flip og fase-flip koden ved brug af ni fysiske qubits. Bit-flip koden anvendes på tre af de fysiske qubits. De tre outputs herfra anvendes hver især sammen med to andre fysiske qubits som inputs til hver sin fase-flip indkodning. Vi har altså en sekventiel indkodning, der består af først en bit-flip kode og dernæst tre parrallele fase-flip koder.\\
 
-Som tidligere giver bit-flip koden os tilstandene $|000>$ og $|111>$. Hademar gaten transformerer tilstandene om til $\sqrt{\frac{1}{2}} (|000> + |111>)$ og $\sqrt{\frac{1}{2}} (|000> - |111>)$. Da vi laver denne indkodning parrallelt tre gange får vi vores logiske bits beskrevet som:
+Som tidligere giver bit-flip koden os tilstandene $|000\ra$ og $|111\ra$. Hademar gaten transformerer tilstandene om til $\sqrt{\frac{1}{2}} (|000\ra + |111\ra)$ og $\sqrt{\frac{1}{2}} (|000\ra - |111\ra)$. Da vi laver denne indkodning parrallelt tre gange får vi vores logiske bits beskrevet som:
 
 \begin{align}
-    |0>_L = (|000> + |111>)^{\otimes 3}\\
-    |1>_L = (|000> - |111>)^{\otimes 3}
+    |0\ra_L = (|000\ra + |111\ra)^{\otimes 3}\\
+    |1\ra_L = (|000\ra - |111\ra)^{\otimes 3}
 \end{align}
 
 \section{Lidt notation}
@@ -25,24 +25,24 @@ For at simplificere notationen yderligere kan et logisk qubit beskrives som et p
 \end{align*}
 
 \section{Shor-kodens X- og Z-operatorer}
-Shor-kodens bit-flip operator $\hat{X}_L$ transformerer $|0>_L$ til $|0>_L$ og vice versa. Eksemplerne ovenfor viser eksempler denne operator. Den er ikke unik, hvilket vil sige at der findes flere versioner af operatoren, som giver den samme effekt. Vigtigt er det at der skal ske et fase-flip i en eller alle tre triplets (hvilket har samme effekt). Nedenfor ses hvad der sker, hvis der er fase-flip i alle tre triplets ($Z_i$ betyder her blot et fase-flip på et vilkårligt bit i tripletten):
+Shor-kodens bit-flip operator $\hat{X}_L$ transformerer $|0\ra_L$ til $|0\ra_L$ og vice versa. Eksemplerne ovenfor viser eksempler denne operator. Den er ikke unik, hvilket vil sige at der findes flere versioner af operatoren, som giver den samme effekt. Vigtigt er det at der skal ske et fase-flip i en eller alle tre triplets (hvilket har samme effekt). Nedenfor ses hvad der sker, hvis der er fase-flip i alle tre triplets ($Z_i$ betyder her blot et fase-flip på et vilkårligt bit i tripletten):
 
 \begin{align*}
-    \hat{X}_L|0>_L &= (\hat{Z}_i|000> + \hat{Z}_i|111>)^{\otimes 3} = (|000> - |111>)^{\otimes 3} = |1>_L\\
-    \hat{X}_L|1>_L &= (\hat{Z}_i|000> - \hat{Z}_i|111>)^{\otimes 3} = (|000> + |111>)^{\otimes 3} = |0>_L
+    \hat{X}_L|0\ra_L &= (\hat{Z}_i|000\ra + \hat{Z}_i|111\ra)^{\otimes 3} = (|000\ra - |111\ra)^{\otimes 3} = |1\ra_L\\
+    \hat{X}_L|1\ra_L &= (\hat{Z}_i|000\ra - \hat{Z}_i|111\ra)^{\otimes 3} = (|000\ra + |111\ra)^{\otimes 3} = |0\ra_L
 \end{align*}
 
-Shor-kodens fase-flip operator $\hat{Z}_L$ transformerer $|0>_L$ om til sig selv og $|1>_L$ om til $-|1>_L$. Dette gøres ved at bytte om på tilstanden af en af triplettet (det vil sige flippe alle de fysiske qubits i en triplet) eller af alle tripletterne. Dette kan gøres ved at bruge bit-flip operatoren på alle tre qubits i en triplet. Der findes dermed fire fase-flip operatorer for det logiske qubit, som har den samme effekt. Et eksempel på dette ses nedenfor:
+Shor-kodens fase-flip operator $\hat{Z}_L$ transformerer $|0\ra_L$ om til sig selv og $|1\ra_L$ om til $-|1\ra_L$. Dette gøres ved at bytte om på tilstanden af en af triplettet (det vil sige flippe alle de fysiske qubits i en triplet) eller af alle tripletterne. Dette kan gøres ved at bruge bit-flip operatoren på alle tre qubits i en triplet. Der findes dermed fire fase-flip operatorer for det logiske qubit, som har den samme effekt. Et eksempel på dette ses nedenfor:
 
 \begin{equation}
     \hat{Z}_L = \hat{X}_1 \hat{X}_2  \hat{X}_3 \otimes I \otimes I \otimes I \otimes I \otimes I \otimes I
 \end{equation}
 
-Anvendes fase-flip operatoren på $|0>_L$ og $|1>_L$ (i dette eksempel ændres tilstanden kun på en enkelt triplet) fås:
+Anvendes fase-flip operatoren på $|0\ra_L$ og $|1\ra_L$ (i dette eksempel ændres tilstanden kun på en enkelt triplet) fås:
 
 \begin{align*}
-    \hat{Z}_L|0>_L &= (\hat{X}_1\hat{X}_2\hat{X}_3|000> + \hat{X}_1\hat{X}_2\hat{X}_3|111>)(|000> + |111>)^{\otimes 2} \\&= (|111> + |000>)(|000> + |111>)^{\otimes 2} = (|000> + |111>)^{\otimes 3} \\&= |0>_L\\
-    \hat{Z}_L|1>_L &= (\hat{X}_1\hat{X}_2\hat{X}_3|000> - \hat{X}_1\hat{X}_2\hat{X}_3|111>)(|000> - |111>)^{\otimes 2} \\&= (|111> - |000>)(|000> + |111>)^{\otimes 2} = (-|000> + |111>)(|000> + |111>)^{\otimes 2} \\&= -(|000> - |111>)^{\otimes 3} \\&= -|1>_L
+    \hat{Z}_L|0\ra_L &= (\hat{X}_1\hat{X}_2\hat{X}_3|000\ra + \hat{X}_1\hat{X}_2\hat{X}_3|111\ra)(|000\ra + |111\ra)^{\otimes 2} \\&= (|111\ra + |000\ra)(|000\ra + |111\ra)^{\otimes 2} = (|000\ra + |111\ra)^{\otimes 3} \\&= |0\ra_L\\
+    \hat{Z}_L|1\ra_L &= (\hat{X}_1\hat{X}_2\hat{X}_3|000\ra - \hat{X}_1\hat{X}_2\hat{X}_3|111\ra)(|000\ra - |111\ra)^{\otimes 2} \\&= (|111\ra - |000\ra)(|000\ra + |111\ra)^{\otimes 2} = (-|000\ra + |111\ra)(|000\ra + |111\ra)^{\otimes 2} \\&= -(|000\ra - |111\ra)^{\otimes 3} \\&= -|1\ra_L
 \end{align*}
 
 Kort groft fortalt er bit-flip operatoren $\hat{X}_L$ på et logisk qubit bygget op af fase-flip operatorer $\hat{Z}_i$ på de fysiske qubits, som opbygger det logiske qubit, og ligeså er fase-flip operatoren $\hat{Z}_L$ på et logisk qubit opbygget af bit-flip operatorer $\hat{X}_i$ på de fysiske qubits, som det logiske qubit er bygget op af.
@@ -87,4 +87,13 @@ Fuldstændig tilsvarende metoden til at finde en mulig bit-flipfejl i en fysisk 
 
 Den eneste forskel er altså at vi her benytter os af $\hat{X}$-operatoren istedet for $\hat{Z}$-operatoeren, derudover er den overordnede fremgangsmetode fuldstændig den samme som i tidligere korte eksempel beskrevet ovenfor. \\
 
-For at kunne fejlfinde og korrigere effektivt benyttes en metode hvor begge disse kombineres, så man ikke er nødsaget til at enten forsøge at rette bit-flipfejl eller fasefejl. Denne metode kaldes for Shor-koden og er beskrevet i højere detalje i afsnittet med samme navn.
+For at kunne fejlfinde og korrigere effektivt benyttes en metode hvor begge disse kombineres, så man ikke er nødsaget til at enten forsøge at rette bit-flipfejl eller fasefejl. Denne metode kaldes for Shor-koden og er beskrevet i højere detalje i afsnittet med samme navn. \\
+
+Shor-koden er som tidligere nævnt altså måden hvorpå man kan korrigere for både bit-flip- og fasefejl, og mere specifikt er det med denne metode muligt at korrigere for én bit-flipfejl, én fasefejl eller én bit-flipfejl OG en fasefejl. Shor-indkodede qubits har deres helt egne syndrommålinger og disse kan altså indeholde et af de tre førnævnte resultater. For at forstå hvordan disse resultater forekommer og hvordan syndrommålingerne som resultat af Shor-koden fungerer betragter vi et eksempel hvor den 4. fysiske qubit ud af de 9 som udgør det system Shor-koden virker på, indeholder både en fasefejl og en bit-flipfejl, så det indkodede state kan beskrives med følgende:
+
+\begin{align}
+    |\psi\ra = \frac{\alpha}{2\sqrt{2}} (|000\ra+|111\ra)(|100\ra-|011\ra)(|000\ra+|111\ra) \\ 
+    +\frac{\beta}{2\sqrt{2}}(|000\ra-|111\ra)(|100\ra+|011\ra)(|000\ra-|111\ra)
+\end{align}
+
+Bit-flip operatoren $\hat{X}$ benyttes på de tre blokke af 3 fysiske qubits og grundet den allerede kendte bit-flipfejl vil alle returnere +1, på nær den paritet indeholdende fejlen, denne vil naturligvis returnere værdien -1. Derved kan vi benytte den korrigerene gate til netop denne rettelse (denne er beskrevet i afsnittet om $\hat{X}$-gaten.

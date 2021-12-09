@@ -1,0 +1,172 @@
+\newpage
+\section*{bilag}
+
+Pauli-matricer - bilag 1
+
+\begin{equation*}
+    \sigma_x=\hat{X}= \begin{pmatrix}
+    0 & 1 \\
+    1 & 0 \\
+    \end{pmatrix},\quad
+    \sigma_y=\hat{Y}= \begin{pmatrix}
+    0 & -i \\
+    i & 0 \\
+    \end{pmatrix},\quad
+        \sigma_z=\hat{Z}= \begin{pmatrix}
+    1 & 0 \\
+    0 & -1 \\
+    \end{pmatrix}
+\end{equation*}
+
+Anvendelse af $\hat{X}, \hat{Y}, \hat{Z}, \hat{H}$ på én bit - bilag 2.
+
+    \[ \hat{X}|\psi\ra = \begin{pmatrix}
+0 & 1 \\
+1 & 0 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \begin{pmatrix}
+\beta \\
+\alpha 
+\end{pmatrix} \]
+
+\[ \hat{Y}|\psi\ra = \begin{pmatrix}
+0 & -i \\
+i & 0 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \begin{pmatrix}
+-i \beta \\
+i \alpha 
+\end{pmatrix} \]
+
+\[ \hat{Z}|\psi\ra = \begin{pmatrix}
+1 & 0 \\
+0& -1 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \begin{pmatrix}
+\alpha \\
+-\beta 
+\end{pmatrix} \]
+
+\[ \hat{H}|\psi\ra =\frac{1}{\sqrt{2}} \begin{pmatrix}
+1 & 1 \\
+1 & -1 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta 
+\end{pmatrix}
+= \frac{1}{\sqrt{2}}\begin{pmatrix}
+\alpha+\beta \\
+\alpha-\beta 
+\end{pmatrix} \] \newline 
+
+CNOT-gaten - bilag 3
+
+\[ CNOT = \begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 \\
+\end{pmatrix} \] \newline 
+
+Udregning af CNOT-gaten på to tilfældige qubits - bilag 4
+
+\[CNOT\cdot |\psi \rangle \otimes |\phi\rangle = \begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 \\
+\end{pmatrix} \begin{pmatrix}
+\alpha & \gamma \\
+\alpha & \delta \\
+\beta & \gamma \\
+\beta & \delta \\
+\end{pmatrix} = \begin{pmatrix}
+\alpha & \gamma \\
+\alpha & \delta \\
+\beta & \delta \\
+\beta & \gamma \\
+\end{pmatrix}\] \newline
+
+
+
+
+
+
+\begin{equation*}
+    |00\rangle = \begin{pmatrix}
+    1 \\
+    0 \\
+    0 \\
+    0 \\
+    \end{pmatrix},
+     |01\rangle = \begin{pmatrix}
+    0 \\
+    1 \\
+    0 \\
+    0 \\
+    \end{pmatrix},
+    |10\rangle = \begin{pmatrix}
+    0 \\
+    0 \\
+    1 \\
+    0 \\
+    \end{pmatrix},
+      |11\rangle = \begin{pmatrix}
+    0 \\
+    0 \\
+    0 \\
+    1 \\
+    \end{pmatrix}
+\end{equation*}
+
+Indkodning af logiske qbits:\\
+\\
+\begin{figure}[h!]
+    \centering
+    \includegraphics{bitindkodning.PNG}
+    \caption{Indkodning af et logisk qbit bestående af 3 fysiske. Dette er bit-flip koden.}
+    \label{fig:bitindkodning2}
+\end{figure}
+
+Den sorte prik kontrol- og ``sigtekornet'' target-bit.\\
+Ved at gennemføre samme process, men anvende Hadamard-gaten på hvert, kan man få et logisk bit i fase-flip kode.
+\begin{figure}[h!]
+    \centering
+    \includegraphics{faseindkodning.PNG}
+    \caption{Indkodning af et logisk qbit bestående af 3 fysiske. Dette er fase-flip koden.}
+    \label{fig:bitindkodning2}
+\end{figure}
+
+Kombinerer man disse, kan vi indkode 9 fysiske bits i Shor-koden:
+\begin{figure}[h!]
+    \centering
+    \includegraphics{shorindkodning.PNG}
+    \caption{Indkodning af et logisk qbit bestående af 9 fysiske. Dette er Shor koden.}
+    \label{fig:bitindkodning2}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
